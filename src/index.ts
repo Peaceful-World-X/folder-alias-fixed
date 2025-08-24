@@ -14,8 +14,10 @@ const { activate, deactivate } = defineExtension(async () => {
   for (let index = 0; index < workspace.workspaceFolders.length; index++) {
     const ws = workspace.workspaceFolders[index];
     const workspaceDir: string = ws.uri.fsPath;
-    const configPath = joinURL(workspaceDir, "folder-alias.json");
-    const privateConfigPath = joinURL(workspaceDir, "private-folder-alias.json");
+    const vscodeDir = joinURL(workspaceDir, ".vscode");
+    if (!fs.existsSync(vscodeDir)) fs.mkdirSync(vscodeDir);
+    const configPath = joinURL(vscodeDir, "folder-alias.json");
+    const privateConfigPath = joinURL(vscodeDir, "private-folder-alias.json");
     if (!fs.existsSync(configPath)) {
       writeConfig(configPath, {});
     }

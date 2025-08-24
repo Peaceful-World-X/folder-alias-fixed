@@ -1,18 +1,18 @@
 {
-  "publisher": "rikka",
-  "name": "folder-alias",
-  "displayName": "folder-alias",
-  "version": "0.1.1",
-  "description": "folder alias",
-  "author": "Rikka",
+  "publisher": "Peaceful-World-X",
+  "name": "folder-alias-fixed",
+  "displayName": "Folder Alias Fixed",
+  "version": "0.1.2",
+  "description": "为VSCode文件树添加文件夹别名标注的插件",
+  "author": "Peaceful-World-X",
   "license": "GPLV3",
-  "homepage": "https://github.com/Muromi-Rikka/folder-alias#readme",
+  "homepage": "https://github.com/Peaceful-World-X/folder-alias-fixed#readme",
   "repository": {
     "type": "git",
-    "url": "https://github.com/Muromi-Rikka/folder-alias"
+    "url": "https://github.com/Peaceful-World-X/folder-alias-fixed"
   },
   "bugs": {
-    "url": "https://github.com/Muromi-Rikka/folder-alias/issues"
+    "url": "https://github.com/Peaceful-World-X/folder-alias-fixed/issues"
   },
   "categories": [
     "Other"
@@ -51,36 +51,22 @@
     }
   },
   "scripts": {
-    "build": "tsdown src/index.ts --external vscode",
-    "dev": "pnpm build --watch --sourcemap",
-    "prepare": "pnpm update:gen",
-    "update:gen": "vscode-ext-gen --output src/generated/meta.ts",
-    "lint": "eslint .",
-    "vscode:prepublish": "pnpm run build",
-    "publish": "vsce publish --no-dependencies",
-    "pack": "vsce package --no-dependencies",
-    "test": "vitest",
-    "typecheck": "tsc --noEmit",
-    "release": "bumpp && pnpm run publish"
+    "build": "tsc src/index.ts --outDir dist --target es2020 --module commonjs --moduleResolution node --esModuleInterop --skipLibCheck",
+    "vscode:prepublish": "npm run build",
+    "pack": "vsce package --no-dependencies"
   },
   "devDependencies": {
-    "@antfu/eslint-config": "^4.13.1",
-    "@types/lodash-es": "^4.17.12",
     "@types/node": "^18.19.103",
     "@types/vscode": "^1.100.0",
-    "@vscode/test-electron": "^2.5.2",
     "@vscode/vsce": "^3.4.1",
-    "bumpp": "^10.1.1",
+    "typescript": "^5.8.3"
+  },
+  "dependencies": {
     "destr": "^2.0.5",
-    "eslint": "^9.27.0",
     "lodash-es": "^4.17.21",
     "mkdirp": "^3.0.1",
     "pathe": "^2.0.3",
     "reactive-vscode": "^0.2.17",
-    "taze": "^19.1.0",
-    "tsdown": "^0.11.12",
-    "typescript": "^5.8.3",
-    "ufo": "^1.6.1",
-    "vscode-ext-gen": "^1.0.2"
+    "ufo": "^1.6.1"
   }
 }

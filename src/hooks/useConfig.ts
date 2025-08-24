@@ -15,8 +15,8 @@ export interface UseConfigReturn {
 }
 
 export function useConfig(fileDir: string): UseConfigReturn {
-  const configPath = join(fileDir, "folder-alias.json");
-  const privateConfigPath = join(fileDir, "private-folder-alias.json");
+  const configPath = join(fileDir, ".vscode", "folder-alias.json");
+  const privateConfigPath = join(fileDir, ".vscode", "private-folder-alias.json");
   const publicConfig = ref(readConfig(configPath));
   const privateConfig = ref(readConfig(privateConfigPath));
   const configFile = computed<RecordConfig>(() => merge(publicConfig.value, privateConfig.value));
